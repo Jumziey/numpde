@@ -9,14 +9,11 @@ Vm = 25;
 Pm = 1;
 dx = L/NG;
 dt = (dx/Vm); %CLF on max velocity
-t = [0 50];
+t = [0 400];
 
-p = zeros(NG,1);
-p(NG/4:3*NG/4) = Pm;
+po = zeros(NG,1);
+po(NG/4:3*NG/4) = Pm;
 
-lax = @(p,jm,j,jp) 1/2*(p(jp)+p(jm)) - dt/(2*dx)*( Vm*(p(jp)-p(jp)^2/Pm) - Vm*(p(jm)-p(jm)^2/Pm));
-
-laxwen = @(p,jm,j,jp) p(j) - dt/(2*dx)*Vm*(1-p(jp)/Pm - (1-p(jm)/Pm)) + 2*(dt/(2*dx))^2 * Vm^2 * ((1-p(jp)/Pm - (1-p(j)/Pm)) - ((1-p(j)/Pm)-(1-p(jm)/Pm)))  
 
 %LAX
 for time = t(1):dt:t(2)
@@ -32,12 +29,11 @@ for time = t(1):dt:t(2)
                 jm = j-1;
                 jp = j+1;
         end
-        p(j) = laxwen(p,jm,j,jp);
+        pn(j) = 1/2*(po(jp)+po(jm)) - dt/(2*dx)*( Vm*(po(jp)-po(jp)^2/Pm) - Vm*(po(jm)-po(jm)^2/Pm));
     end
-    %spo = pn;
+    po = pn;
     axis([0 400 0 1])
-    plot(1:dx:L,p)
+    plot(1:dx:L,po)
     axis([0 400 0 1])
-		time
     pause(0.02)
 end
