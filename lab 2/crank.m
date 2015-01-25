@@ -1,46 +1,50 @@
-clear all; close all;
-L = 10.0;
-c = 10.0;
-gp = 512;
+variables %Initiate common variables
+
 time = 100; %In sec
 timeStop = 0.5;
-func = 3;
+func = 1;
 
-grid = linspace(0,L,gp)'; %Values used for initialization
-xAxis = linspace(0,L,gp)';
-dx = L/gp;
 dt = dx/c %Just first try
-dt = dt*5;
-
-Fn = @(x) exp(-(x-L/2).^2);
-Fs = @(x) sin((pi/5)*x);
-Fp = @(x) 0*(x<10/3) + (10/3<x).*(x<20/3) + 0*(x>20/3);
-f = {Fn, Fs, Fp};
-
+dt = dt/5;
+q = c^2/(2*dx^2);
 
 %Update scheme - implicit solution for wave equation
-%Creating a stiffness matrix for the problemj
-A = zeros(gp)
+%Creating matrices for the system
+A = zeros(gp);
 A(1,1) = dx^2;
 A(end,end) = dx^2;
 for i = 2:gp-1
 	j = i-1;
 	A(i,j) = 1;
-	A(i,j+1) = -(2+(dx/(c*dt))^2);
+	A(i,j+1) = -(2+q/dt^2);
 	A(i,j+2) = 1;
 end
-A = c^2/dx^2*A;
+A = (1/q)*A;
+% C matrix
+C = zeros(gp);
+C(1,1) = dx^2;
+C(end,end) = dx^2;
+for i = 2:gp-1
+	j = i-1;
+	C(i,j) = -1;
+	C(i,j+1) = 2+1/(q*dt^2);
+	C(i,j+2) = -1;
+end
+C = q*C;
+
+
 %Update Functions
 %First - Special Case
-u1 = @(u) (A-(1/dt^2 * eye(gp)))\(-2/dt^2 * u);
+u1 = @(u) (A-C)\((-2/dt^2)*u);
 %Update scheme for the all the rest
-u = @(u,uo) A\((1/dt^2)*(-2*u+uo))
+u = @(u,uo) A\(C*uo - (2/dt^2)*u);
 
 
 %Initial Values
+
+grid = f{func}(xAxis);
 grid(1) = 0;
 grid(end) = 0;
-grid(2:end-1) = f{func}(grid(2:end-1));
 
 %Control Plot
 ph = plot(xAxis,grid)
@@ -72,7 +76,7 @@ for i = 0:time/dt
 	grid = ngrid;
 	%pause
 	set(ph,'YData', grid)
-	title(sprintf('Implicit... %.3f s. of %d s.',i*dt,time))
+	title(sprintf('Crank-Nicholson... %.3f s. of %d s.',i*dt,time))
 	drawnow;
 	if i*dt >timeStop && stop==true
 		stop = false;
