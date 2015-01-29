@@ -1,11 +1,11 @@
 variables %Initiate common variables
 
 time = 100; %In sec
-timeStop = 0.5;
-func = 1;
+timeStop = 1.2;
+func = 2;
 
 dt = dx/c; %Just first try
-dt = dt/5;
+dt = dt*0.5;
 q = c^2/(2*dx^2);
 
 %Init
@@ -20,7 +20,7 @@ end
 k = k';
 
 %Initial condition
-IC = f{1}(xAxis);
+IC = f{func}(xAxis);
 grid = [IC; 0; -IC(end:-1:2)];
 C = (1/2) * fft(grid,2*gp);
 
@@ -42,7 +42,7 @@ for t = 0:dt:time
 	FTo = FT;
 	FT = FTnew;
 	drawnow;
-	if i*dt >timeStop && stop==true
+	if t >timeStop && stop==true
 		stop = false;
 		pause
 	end

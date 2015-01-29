@@ -1,11 +1,11 @@
 variables %Initiate common variables
 
-time = 100; %In sec
-timeStop = 0.5;
+time = 40.9; %In sec
+timeStop = 4;
 func = 1;
 
 dt = dx/c; %Just first try
-dt = dt/5;
+dt = 0.1;
 q = c^2/(2*dx^2);
 
 %Init
@@ -20,7 +20,7 @@ end
 k = k';
 
 %Initial condition
-IC = f{1}(xAxis);
+IC = f{func}(xAxis);
 grid = [IC; 0; -IC(end:-1:2)];
 C = (1/2) * fft(grid,2*gp);
 

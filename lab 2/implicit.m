@@ -3,14 +3,14 @@ L = 10.0;
 c = 10.0;
 gp = 512;
 time = 100; %In sec
-timeStop = 0.5;
+timeStop = 2;
 func = 3;
 
 grid = linspace(0,L,gp)'; %Values used for initialization
 xAxis = linspace(0,L,gp)';
 dx = L/gp;
 dt = dx/c %Just first try
-dt = dt*5;
+dt = dt*1;
 
 Fn = @(x) exp(-(x-L/2).^2);
 Fs = @(x) sin((pi/5)*x);
@@ -21,15 +21,15 @@ f = {Fn, Fs, Fp};
 %Update scheme - implicit solution for wave equation
 %Creating a stiffness matrix for the problemj
 A = zeros(gp)
-A(1,1) = dx^2;
-A(end,end) = dx^2;
+A(1,1) = dx^2/c^2;
+A(end,end) = dx^2/c^2;
 for i = 2:gp-1
 	j = i-1;
 	A(i,j) = 1;
-	A(i,j+1) = -(2+(dx/(c*dt))^2);
+	A(i,j+1) = -(1+2*(dx/(c*dt))^2);
 	A(i,j+2) = 1;
 end
-A = c^2/dx^2*A;
+A = c^2/dx^2*A; 
 %Update Functions
 %First - Special Case
 u1 = @(u) (A-(1/dt^2 * eye(gp)))\(-2/dt^2 * u);
