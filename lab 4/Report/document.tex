@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{report}
+
+\begin{document}
+\section{Problem 1}
+\subsection{Poisson}
+For the poisson equation problem we have
+\begin{align}
+	-\nabla (a(x,y)\nabla u) &= f,\quad x\in \Omega \\
+	u &= 0,\quad x\in \delta \Omega.
+\end{align}
+In order to rewrite this equation on weak, or variational, form we start with multiplying the integral of $f$ with a test function $v$ where $v\in V_0$ where $V_0 = \{ ||v||^2_{L^2} + ||\nabla v||^2 < \infty, v|_{\nabla \Omega} = 0\}$. This results in
+\begin{align}
+	\int_{\Omega} f v d s &= - \int_{\Omega} \nabla (a \nabla u) v ds \\
+	&= \int_{\Omega} a \nabla u \nabla v ds - \int_{\delta \Omega} v \nabla u d\bar{l} \\
+	&= \int_{\Omega} a \nabla u \nabla v ds
+\end{align}
+where we used greens identity in the first step and the fact that the test function is zero at the boundary in the second step.
+\subsection{Shroedinger}
+When we look at the time dependent solution we have a significantly different problem.
+\begin{align}
+	\nabla^2 u + a(x,y) u &= f, \quad x\in \Omega \\
+	u &= 0, \quad x \in \delta \Omega
+\end{align}
+We continue and do the same thing as we did for the poisson problem. Starting with multiplying the integral of f with a test function $v \in V_0$.
+\begin{align}
+	\int_{\Omega} f v d s &= - \int_{\Omega} \nabla^2 u v ds + \int_{\Omega} auv ds \\
+	&= \int_{\Omega} \nabla u\nabla vds-\int_{\delta\Omega} v \nabla u d\bar{l} + \int_{\Omega} auvds \\
+	&= \int_{\Omega} \nabla u \nabla v ds + \int_{\Omega} a u v ds
+\end{align}
+here the exact same steps as for the poisson derivation was made. The difference of course is the extra term $\int_{\Omega} a u v ds$ which is not within the derivate sign in the initial problem setup.
+
+\section{Problem 2}
+
+	
+
+\end{document}
