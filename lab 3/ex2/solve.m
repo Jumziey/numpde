@@ -30,6 +30,10 @@ for N = NVAL
 	maxNorm = [ maxNorm; max(abs(f2(xe)-uh))]; 
 end
 
+plot(xe, f2(xe))
+legend('h = 1/2', 'h = 1/4', 'h = 1/16', 'h = 1/256', 'Analytical Solution')
+title('Solving a System using FEM')
+
 figure(2)
 h = 1./NVAL;
 loglog(h,Enorm)
@@ -38,3 +42,8 @@ loglog(h,L2norm)
 loglog(h,maxNorm)
 
 legend('Energy Norm', 'L^2 norm', 'Max Norm')
+
+e1 = Enorm(1); h1 = 1/2;
+e2 = Enorm(2); h2 = 1/4;
+
+log(e2)-log(e1)/(log(h2)-log(h1))
