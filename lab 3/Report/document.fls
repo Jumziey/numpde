@@ -518,7 +518,6 @@ INPUT ../ex2/loglogError.eps
 INPUT ./figures/loglogError.generated.pdf
 INPUT ./figures/loglogError.generated.pdf
 INPUT ./figures/loglogError.generated.pdf
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx10.tfm
 INPUT ../ex3/inhom.eps
 INPUT ../ex3/inhom.eps
 INPUT ../ex3/inhom.eps

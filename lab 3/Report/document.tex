@@ -3,7 +3,7 @@
 
 \begin{document}
 \section{Problem 1}
-In appendix \ref{code:hatfun} we can see the code that implements the hatfun function. In order to see clearly how it works we have plotted the function for $n = 2,5,10$. Where n stands for the subscript in the hat function. 
+In appendix \ref{code:hatfun} we can see the code that implements the hatfun function. In order to clearly see how it works we have plotted the function for $n = 2,5,10$. Where n stands for the number of segments in the system we evaluate for. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../ex1/hatplot}
@@ -16,7 +16,7 @@ To continue we have plotted the linear interpolant $\pi  f \in V_h$ of $f(x) = x
 	 \pi f(x) = \Sigma^n_{i=1} f(x_i) \phi_i(x)
 	 \label{eq:inter}
 \end{equation}
-Which basically is just plotting the values of f(x) at certain points and dragging a straight line in between them. We illustrate this is figure \ref{fig:inter} for different amounts of points $n$. 
+Which basically is just plotting the values of f(x) at certain points and dragging a straight line in between them. We illustrate this in figure \ref{fig:inter} for different amounts of points $n$. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../ex1/inter}
@@ -28,7 +28,7 @@ In appendx \label{code:L2mass1D} we can see how the mass matrix for solving the 
 \begin{equation}
 	b_i = \int_{x_i - 1}^{x_i} f(\phi_i) dx + \int_{x_i}^{x_i+1} f(\phi_i) dx.
 \end{equation}
-In order to estimate these values we use either trapezoidal or simpsons method in this lab. The code for the code creating the load vector using the trapezoidal method is in appendix \ref{code:L2Load1D}, the code for the simpsons is in appendix \ref{code:LoadAssemblerS1D}. Looking at figure \ref{fig:l2proj} we can see how much better the values look like if one use the simpsons method to assemble the load vector compared to the trapezoidal. But one should not stop looking there. If we compare figure \ref{fig:inter} to \ref{fig:l2proj} we can see how the estimation methods differ. It is clear from figure \ref{fig:inter} that the first method we used tend to low ball the function and if you where to integrate the estimation the value would come out consistently low\footnote{This would of course balance itself out if one where to do this estimation on say a sinus function that evenly goes up and down for infinity.}. Looking at figure \ref{fig:l2proj} we can instead see how the values goes over and under the correct values, thus given a more correct value, balanced around the correct one,  if one where to integrate the estimated function. This is natural since how the $L^2$ projection uses integral signs in the estimation. 
+In order to estimate these values we use either trapezoidal or simpsons method in this lab. The code for the code creating the load vector using the trapezoidal method is in appendix \ref{code:L2Load1D}, the code for the simpsons is in appendix \ref{code:LoadAssemblerS1D}. Looking at figure \ref{fig:l2proj} we can see how much better the values look like if one use the simpsons method to assemble the load vector compared to the trapezoidal. But one should not stop looking there. If we compare figure \ref{fig:inter} with figure \ref{fig:l2proj} we can see how the estimation methods differ. It is clear from figure \ref{fig:inter} that the first method we used tend to low ball the function value and if you where to integrate the estimation the value would come out consistently low\footnote{This would of course balance itself out if one where to do this estimation on say a sinus function that evenly goes up and down for infinity.}. Looking at figure \ref{fig:l2proj} we can instead see how the values goes over and under the correct values, thus given a more correct value, balanced around the correct one,  if one where to integrate the estimated function. This is natural since how the $L^2$ projection actually estimates the integral of the function. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../ex1/l2proj}
@@ -54,7 +54,7 @@ In this exercise we only use priori error estimates. In order to look at the ene
 	&= \int_I (u-u_h)'(u+u_h)'dx -  \int(u-u_h)'(u_h+u_h)'dx \\
 	&= \int_I (u-u_h)'(u+u_h)'dx = \int_I ({u'}^2 - {u'}^2_h)dx =  ||u'||^2 - ||{u'}_h||^2 
 \end{align}
-where we use Galerkin orthogonality in the step from (4) to (5). From there we can just use the definition of the $L^2$ norm and $u_h$ to calculate the energy error. Calculating the $L^2$ error norm is done through taking $||P_hu - u_h||^2_{L^2(I)}$ as it is defined in the lecture book. Using this logic we end up with expressions
+where we use Galerkin orthogonality in the step from (4) to (5). From there we can just use the definition of the $L^2$ norm and $u_h$ to calculate the energy error. Calculating the $L^2$ error norm is done through taking $||P_hu - u_h||^2_{L^2(I)}$ as it is defined in the course book. Using this logic we end up with the expressions
 \begin{align}
 	||u - u_h||^2_E &= ||u'||^2_{L^2} - \bar{\xi}^T \bar{\bar{A}} \bar{\xi} \\
 	&= 1/3 - \bar{\xi}^T \bar{\bar{A}} \bar{\xi}
@@ -86,10 +86,10 @@ In the course book we can see equation 2.30 stating\footnote{The equation notati
 \begin{equation}
 	|| u - u_h ||^2_E \leq c h^1 ||u''||_{L^2}
 \end{equation}
-Making a system of two equations and using the values of the energy norm found at $h = 1/16$ and $h = 1/256$ we can solve to what exponential we have a dependence on h. The result is as expected that we have a value lower or equal to 1 in the exponential for h in the energy error norm, while we have a value lower or equal to two for the $L^2$ and maximum norm. 
+Making a system of two equations and using the values of the energy norm found at $h = 1/16$ and $h = 1/256$ we can solve to what exponential we have a dependence on h. The result is as expected that we have a value higher or equal to 1 in the exponential for h in the energy error norm, while we have a value higher or equal to two for the $L^2$ and maximum norm. 
 
 \section{Problem 3}
-In this exercise we implement a FEM solver that can deal with inhomogeneous boundary conditions. It is implemented based on the code presented in the course book under "2.3 A Model Problem with Variable Coefficients". Its slightly simplified though. The solution is presented in figure \ref{fig:inom} and it was surprising how relatively simple it was to implement. 
+In this exercise we implement a FEM solver that can deal with inhomogeneous boundary conditions. It is implemented based on the code presented in the course book under "2.3 A Model Problem with Variable Coefficients". Its slightly simplified though. The solution is presented in figure \ref{fig:inhom} and it was surprising how relatively simple it was to implement. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../ex3/inhom}
