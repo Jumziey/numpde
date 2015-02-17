@@ -33,3 +33,20 @@ for hmax = stepSerie
 	title(sprintf('h_{max} = %.3f',hmax))
 	i = i+1;
 end
+
+figure(3) %Energy Error norms
+
+pf = polyfit(stepSerie,Enorm,1);
+fit = @(x) pf(1).*x + pf(2);
+loglog(stepSerie,Enorm, 'b')
+hold on
+loglog(stepSerie,fit(stepSerie), 'g')
+legend('Measured Data', 'Linear Fit')
+pf = polyfit(log(stepSerie),log(Enorm), 1)
+cs = log(stepSerie(1)/stepSerie(2))/log(Enorm(1)/Enorm(2))
+title(sprintf('||u-u_h||_E, fitted s = %.4f ,calculated s = %.4f', pf(1),cs))
+
+figure(4) %Plot analytical
+fanal = @(x,y) sin(pi*x).*sin(pi*y);
+pdesurf(p,t,fanal(p(1,:),p(2,:))')
+title('Analytical solution f = sin(\pi x)sin(\pi y)')

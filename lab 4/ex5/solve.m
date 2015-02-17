@@ -30,8 +30,19 @@ for hmax = stepSerie
 	
 	subplot(2,2,i)
 	pdesurf(p,t,xi)
-	Enorm(i) = sqrt(abs(pi^2/2-abs(xi'*(A+M)*xi)));
+	Enorm(i) = sqrt(abs(pi^2/2 + 1/4-abs(xi'*(A+M)*xi)));
 	title(sprintf('h_{max} = %.3f',hmax))
 	i = i+1;
 end
-Enorm
+
+figure(3)
+
+p = polyfit(stepSerie,Enorm,1);
+fit = @(x) p(1).*x + p(2);
+loglog(stepSerie,Enorm, 'b')
+hold on
+loglog(stepSerie,fit(stepSerie), 'g')
+legend('Measured Data', 'Linear Fit')
+p = polyfit(log(stepSerie),log(Enorm), 1)
+cs = log(stepSerie(1)/stepSerie(2))/log(Enorm(1)/Enorm(2))
+title(sprintf('||u-u_h||_E, fitted s = %.4f ,calculated s = %.4f', p(1),cs))
