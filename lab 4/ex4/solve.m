@@ -31,6 +31,7 @@ for hmax = stepSerie
 	pdesurf(p,t,xi)
 	Enorm(i) =  sqrt(abs(pi^2/2-xi'*S*xi));
 	title(sprintf('h_{max} = %.3f',hmax))
+	axis([-0.1 1.1 -0.1 1.1 -0.1 1.1])
 	i = i+1;
 end
 
@@ -50,3 +51,4 @@ figure(4) %Plot analytical
 fanal = @(x,y) sin(pi*x).*sin(pi*y);
 pdesurf(p,t,fanal(p(1,:),p(2,:))')
 title('Analytical solution f = sin(\pi x)sin(\pi y)')
+axis([-0.1 1.1 -0.1 1.1 -0.1 1.1])

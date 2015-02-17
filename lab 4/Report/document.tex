@@ -119,11 +119,82 @@ Using the subspace of $V_0$ that is spanned by the hat functions for the test fu
 \end{align}
 Here we note we once again only get some extra terms on the boundary due to the more general formulation of the boundary conditions. 
 
+\newpage
 \section{Problem 4}
-tjo hahaha vad har hant?
+Here we implement a finite element solver for the Poisson equation within the unit square with $u=0$ on the boundary and $a=1$\footnote{Phew!}. We solve it with $f = 2 \pi^2 sin(\pi x) sin(\pi y)$. We have a mesh that goes between $h_{max} = 0.2,0.1,0.05,0,025$, this is depicted in figure \ref{fig:meshplot}.Using our implementation of the finite element method\footnote{all the code is attached in the appendix} We solve the system for every mesh and we get the result that is depicted in figure \ref{fig:ex4sol}. This could nicely be compared with the analytical solution to the problem in figure \ref{fig:anal}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../ex4/meshplot}
+	\caption{Here we see the different meshes we are working on}
+	\label{fig:meshplot}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../ex4/sol}
+	\caption{The numerical ssolution to the system we are looking at, the figures looks uggly since matlab is horrid at exporting and presenting data in a halfdeacent format.}
+	\label{fig:ex4sol}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../ex4/anal}
+	\caption{The analytical solution to the system we are looking at, the figures looks uggly since matlab is horrid at exporting and presenting data in a halfdeacent format.}
+	\label{fig:anal}
+\end{figure}
+But perhaps the smartest way of doing it is to look at the energy norm of the error for the system. The errror is depicted in figure \ref{fig:ex4error}. Something of interest here is the convergence of the system. The convergence is the $s$ in the equation
+\begin{equation}
+	||u-u_h||^2_E \leq c h^s.
+	\label{eq:errorBounds}
+\end{equation}
+Using this we can analytically solve the equation and get a lower bound for the $s$. Using the fact that 
+\begin{equation}
+	||u-u_h||^2_E = ||u||^2 - ||u_h||^2 \leq c h^s \label{eq:error}
+\end{equation}
+we can calculate two errors and divide the resulting equation to end up with 
+\begin{align}
+	ln(\frac{e_1}{e_2}) &\leq s ln(\frac{h_1}{h_2}) \\
+	s &\geq \frac{ln(\frac{e_1}{e_2})}{ln(\frac{h_1}{h_2})} \label{eq:findS}
+\end{align}
+Using this we can calculate $s$ analytically and do a fitting of a log plot of step size vs energy norm of the error. As expected we find that the fitted value for $s$ is sligtly larger then the calculated one. This since the calculated one is the lowest possible value that $s$ should be able to take. As expected from theory this value is very close to one. One can discuss why the measured error is not straight. This is because the $c$ in equation \ref{eq:ex4error} is not completly constant but has a dependency on how different the chunkiness are for different triangels in the mesh. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../ex4/error}
+	\caption{The energy norm of the error in the system we solved for different $h_{max}$}
+	\label{fig:ex4error}
+\end{figure}
 
+\section{Problem 5}
+Here we do the same thing as in the previous exercise, with the same analysis done and same size meshes. Difference is that we do it for the shroedinger problem with $u=0$ and $a=1$. The only interessting pitfalls is that you have ho assemble a slightly different system matrix for this problem using both the stiffness and mass matrix.The code is attached in the appendix.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../ex5/sol}
+	\caption{The numerical ssolution to the system we are looking at, the figures looks uggly since matlab is horrid at exporting and presenting data in a halfdeacent format.}
+	\label{fig:ex5sol}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../ex5/error}
+	\caption{The energy norm of the error in the system we solved}
+	\label{fig:ex5error}
+\end{figure}
 
+\newpage
+\appendix
+\section{code: Problem 4}
+\subsection{solve.m}
+\verbatimtabinput{../ex4/solve.m}
+\subsection{loadAssembler.m}
+\verbatimtabinput{../ex4/loadAssembler.m}
+\subsection{systemMatrixAssembler.m}
+\verbatimtabinput{../ex4/systemMatrixAssembler.m}
+
+\section{code: Problem 5}
+\subsection{solve.m}
+\verbatimtabinput{../ex5/solve.m}
+\subsection{loadAssembler.m}
+\verbatimtabinput{../ex5/loadAssembler.m}
+\subsection{systemMatrixAssembler.m}
+\verbatimtabinput{../ex5/systemMatrixAssembler.m}
 
 
 

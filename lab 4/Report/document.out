@@ -14,3 +14,12 @@
 \BOOKMARK [3][-]{subsubsection.3.2.1}{Problem 1 Formulation}{subsection.3.2}% 14
 \BOOKMARK [3][-]{subsubsection.3.2.2}{Problem 2 Formulation}{subsection.3.2}% 15
 \BOOKMARK [1][-]{section.4}{Problem 4}{}% 16
+\BOOKMARK [1][-]{section.5}{Problem 5}{}% 17
+\BOOKMARK [1][-]{appendix.A}{code: Problem 4}{}% 18
+\BOOKMARK [2][-]{subsection.A.1}{solve.m}{appendix.A}% 19
+\BOOKMARK [2][-]{subsection.A.2}{loadAssembler.m}{appendix.A}% 20
+\BOOKMARK [2][-]{subsection.A.3}{systemMatrixAssembler.m}{appendix.A}% 21
+\BOOKMARK [1][-]{appendix.B}{code: Problem 5}{}% 22
+\BOOKMARK [2][-]{subsection.B.1}{solve.m}{appendix.B}% 23
+\BOOKMARK [2][-]{subsection.B.2}{loadAssembler.m}{appendix.B}% 24
+\BOOKMARK [2][-]{subsection.B.3}{systemMatrixAssembler.m}{appendix.B}% 25
