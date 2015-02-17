@@ -9,7 +9,7 @@ For the poisson equation problem we have
 	-\nabla (a(x,y)\nabla u) &= f,\quad x\in \Omega \\
 	u &= 0,\quad x\in \delta \Omega.
 \end{align}
-In order to rewrite this equation on weak, or variational, form we start with multiplying the integral of $f$ with a test function $v$ where $v\in V_0$ where $V_0 = \{ ||v||^2_{L^2} + ||\nabla v||^2 < \infty, v|_{\nabla \Omega} = 0\}$. This results in
+In order to rewrite this equation on the variational form we start with multiplying the integral of $f$ with a test function $v$ where $v\in V_0$ where $V_0 = \{ ||v||^2_{L^2} + ||\nabla v||^2 < \infty, v|_{\nabla \Omega} = 0\}$. This results in
 \begin{align}
 	\int_{\Omega} f v d s &= - \int_{\Omega} \nabla (a \nabla u) v ds \\
 	&= \int_{\Omega} a \nabla u \nabla v ds - \int_{\delta \Omega} a v \nabla u d\bar{l} \\
@@ -26,10 +26,11 @@ We continue and do the same thing as we did for the poisson problem. Starting wi
 \begin{align}
 	\int_{\Omega} f v d s &= - \int_{\Omega} \nabla^2 u v ds + \int_{\Omega} auv ds \\
 	&= \int_{\Omega} \nabla u\nabla vds-\int_{\delta\Omega} v \nabla u d\bar{l} + \int_{\Omega} auvds \\
-	&= \int_{\Omega} \nabla u \nabla v ds + \int_{\Omega} a u v ds
+	&= \int_{\Omega} \nabla u \nabla v ds + \int_{\Omega} a u v ds.
 \end{align}
-here the exact same steps as for the poisson derivation was made. The difference of course is the extra term $\int_{\Omega} a u v ds$ which is not within the derivate sign in the initial problem setup.
+Here the exact same steps as for the poisson derivation was made. The difference of course is the extra term $\int_{\Omega} a u v ds$ which is not within the derivate sign in the initial problem setup.
 
+\newpage
 \section{Problem 2}
 \subsection{Poisson}
 In this problem we add some more complex boundary conditions. The poisson equation becomes 
@@ -45,11 +46,10 @@ We still use the same kind process of deriving the weak or variational form. One
 \end{align}
 
 \subsubsection{Energy norm}
-For the energy norm we simply look at the variational form and make sure the terms including $u$ is on one side and take that side and put $v=u$ in order to get the an expression for the energy norm $||u||^2_E$
+For the energy norm we simply look at the variational form and make sure the terms including $u$ is on one side and take that side and put $v=u$ in order to get an expression for the energy norm $||u||^2_E$
 \begin{equation}
 	||u||^2_E = \int_{\Omega} a (\nabla u)^2 ds + \frac{c_0}{c_1}  \int_{\delta \Omega} a u^2 dl
 \end{equation}
-This physically represents the energy in the system, while the left hand side of equation \ref{eq:poisGenVar} stands for the load on the system.
 
 \subsection{Shroedinger}
 Here we apply the same more complex boundary condidion to the time-independent shroedinger equation. 
@@ -64,20 +64,20 @@ And in order to get to the variational form we multiply the integral of f with a
 	&= \int_{\Omega} \nabla u \nabla v ds + \int_{\Omega} a u v ds + \frac{c_0}{c_1}\int_{\delta \Omega} u v dl 
 \end{align}
 \subsubsection{Energy norm}
-For the energy norm we, again, look at the variational form and make sure the terms including $u$ is on one side and take that side and put $v=u$ in order to get the an expression for the energy norm $||u||^2_E$
+For the energy norm we, again, look at the variational form and make sure the terms including $u$ is on one side and take that side and put $v=u$ in order to get an expression for the energy norm $||u||^2_E$
 \begin{equation}
 	||u||^2_E = \int_{\Omega} (\nabla u)^2 ds + \int_{\Omega} a u^2 ds + \frac{c_0}{c_1}\int_{\delta \Omega} u^2 dl 
 \end{equation}
 
 \section{Problem 3}
-In this exercise we wanna use the previous results and show how a finite elements approximation might look like. We will use the piecewise linear approximation. This means we will use a subspace of $V_0$ and $V_1$ which can be spanned by the hat functions, as define in the course book, that we will write as $\{\phi\}^{n_i}_{i=1}$.
+In this exercise we wanna use the previous results and show how a finite elements approximation might look like. We will use the piecewise linear approximation. This means we will use a subspace of $V_0$ and $V_1$ which can be spanned by the hat functions, as defined in the course book, that we will write as $\{\phi\}^{n_i}_{i=1}$.
 \subsection{Poisson}
 \subsubsection{Problem 1 Formulation}
 We start off with
 \begin{equation}
 	\int_{\Omega} f v d s = \int_{\Omega} a \nabla u \nabla v ds
 \end{equation}
-Rewritting $v$ in terms of hat functions and we approximate $u$ as $u_h$ which is basically a solution projected onto the space spanned by the hat functions we get
+Rewritting $v$ in terms of hat functions and we approximate $u$ as $u_h$ which is basically a solution projected onto the space spanned by the hat functions in $V_0$ we get
 \begin{equation}
 	\int_{\Omega} f \phi_i ds = \sum^n_i \xi_i (\int_{\Omega} a \nabla \phi_i \nabla \phi_j ds)
 \end{equation}
@@ -100,7 +100,7 @@ In this exercise we start off with the variational formulation
 \begin{equation}
 	\int_{\Omega} fv ds= \int_{\Omega} \nabla u \nabla v ds + \int_{\Omega} a u v ds
 \end{equation}
-Using the subspace of $V_0$ that is spanned by the hat functions for the test function and solution space we get
+Using the subspace of $V_1$ that is spanned by the hat functions for the test function and solution space we get
 \begin{align}
 	\int_{\Omega} f \phi_i ds &= \sum^n_i \xi_i \int_{\Omega} \nabla \phi_i \nabla \phi_j ds + \sum^n_i \xi_i \int_{\Omega}a \phi_i \phi_j ds \\
 	&= \sum^n_i \xi_i ( \int_{\Omega} \nabla \phi_i \nabla \phi_j ds + \int_{\Omega}a \phi_i \phi_j ds).
@@ -140,7 +140,7 @@ Here we implement a finite element solver for the Poisson equation within the un
 	\caption{The analytical solution to the system we are looking at, the figures looks uggly since matlab is horrid at exporting and presenting data in a halfdeacent format.}
 	\label{fig:anal}
 \end{figure}
-But perhaps the smartest way of doing it is to look at the energy norm of the error for the system. The errror is depicted in figure \ref{fig:ex4error}. Something of interest here is the convergence of the system. The convergence is the $s$ in the equation
+But perhaps the smartest way of doing it is to look at the energy norm of the error for the system. The errror is depicted in figure \ref{fig:ex4error}. Something of interest here is the convergence rat of the system. The convergence rate is the $s$ in the equation
 \begin{equation}
 	||u-u_h||^2_E \leq c h^s.
 	\label{eq:errorBounds}
@@ -154,16 +154,16 @@ we can calculate two errors and divide the resulting equation to end up with
 	ln(\frac{e_1}{e_2}) &\leq s ln(\frac{h_1}{h_2}) \\
 	s &\geq \frac{ln(\frac{e_1}{e_2})}{ln(\frac{h_1}{h_2})} \label{eq:findS}
 \end{align}
-Using this we can calculate $s$ analytically and do a fitting of a log plot of step size vs energy norm of the error. As expected we find that the fitted value for $s$ is sligtly larger then the calculated one. This since the calculated one is the lowest possible value that $s$ should be able to take. As expected from theory this value is very close to one. One can discuss why the measured error is not straight. This is because the $c$ in equation \ref{eq:ex4error} is not completly constant but has a dependency on how different the chunkiness are for different triangels in the mesh. 
+Using this we can calculate $s$ analytically and do a fitting of a log plot of step size vs energy norm of the error. As expected we find that the fitted value for $s$ is sligtly larger then the calculated one. This since the calculated one is the lowest possible value that $s$ should be able to take. As expected from theory this value is very close to one. One can discuss why the measured error is not straight. This is because the $c$ in equation \ref{eq:error} is not completly constant but has a dependency on how different the chunkiness are for different triangels in the mesh. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../ex4/error}
 	\caption{The energy norm of the error in the system we solved for different $h_{max}$}
 	\label{fig:ex4error}
 \end{figure}
-
+\newpage
 \section{Problem 5}
-Here we do the same thing as in the previous exercise, with the same analysis done and same size meshes. Difference is that we do it for the shroedinger problem with $u=0$ and $a=1$. The only interessting pitfalls is that you have ho assemble a slightly different system matrix for this problem using both the stiffness and mass matrix.The code is attached in the appendix.
+Here we do the same thing as in the previous exercise, with the same analysis done and same size meshes. Difference is that we do it for the shroedinger problem with $u=0$ and $a=1$. The only interessting pitfalls is that you have to assemble a slightly different system matrix for this problem using both the stiffness and mass matrix. The code is attached in the appendix.
 
 \begin{figure}[H]
 	\centering

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.7.9)  17 FEB 2015 16:44
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.7.9)  17 FEB 2015 17:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1828,8 +1828,8 @@ File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.41 \begin{align}
-                   [1] [2] [3] [4]
+l.33 \newpage
+              [1] [2] [3] [4]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 124.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1845,7 +1845,7 @@ ed.pdf ../ex4/meshplot.eps>
 (epstopdf)             \includegraphics on input line 127.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures/meshplot.generated.pdf, id=181, 591.20876pt x 448.67625pt>
+<./figures/meshplot.generated.pdf, id=180, 591.20876pt x 448.67625pt>
 File: ./figures/meshplot.generated.pdf Graphic file (type pdf)
 
 <use ./figures/meshplot.generated.pdf>
@@ -1863,7 +1863,7 @@ f ../ex4/sol.eps>
 (epstopdf)             \includegraphics on input line 133.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures/sol.generated.pdf, id=182, 421.575pt x 316.18124pt>
+<./figures/sol.generated.pdf, id=181, 421.575pt x 316.18124pt>
 File: ./figures/sol.generated.pdf Graphic file (type pdf)
 
 <use ./figures/sol.generated.pdf>
@@ -1880,7 +1880,7 @@ df ../ex4/anal.eps>
 (epstopdf)             \includegraphics on input line 139.
 Package epstopdf Info: Output file is already uptodate.
 
-<./figures/anal.generated.pdf, id=183, 421.575pt x 316.18124pt>
+<./figures/anal.generated.pdf, id=182, 421.575pt x 316.18124pt>
 File: ./figures/anal.generated.pdf Graphic file (type pdf)
 
 <use ./figures/anal.generated.pdf>
@@ -1888,9 +1888,6 @@ Package pdftex.def Info: ./figures/anal.generated.pdf used on input line 139.
 (pdftex.def)             Requested size: 418.25368pt x 313.69583pt.
  [5 <./figures/meshplot.generated.pdf>]
 [6 <./figures/sol.generated.pdf>]
-
-LaTeX Warning: Reference `eq:ex4error' on page 7 undefined on input line 157.
-
 Package epstopdf Info: Source file: <../ex4/error.eps>
 (epstopdf)                    date: 2015-02-17 16:09:49
 (epstopdf)                    size: 19827 bytes
@@ -1901,6 +1898,7 @@ Package epstopdf Info: Source file: <../ex4/error.eps>
 pdf ../ex4/error.eps>
 (epstopdf)             \includegraphics on input line 160.
 Package epstopdf Info: Output file is already uptodate.
+
 <./figures/error.generated.pdf, id=7175, 421.575pt x 316.18124pt>
 File: ./figures/error.generated.pdf Graphic file (type pdf)
 
@@ -1911,7 +1909,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 161.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 161.
- [7 <./figures/anal.generated.pdf>]
+ [7 <./figures/anal.generated.pdf>] [8 <./figures/error.generated.pdf>]
 Package epstopdf Info: Source file: <../ex5/sol.eps>
 (epstopdf)                    date: 2015-02-17 16:39:29
 (epstopdf)                    size: 6102696 bytes
@@ -1923,8 +1921,7 @@ f ../ex5/sol.eps>
 (epstopdf)             \includegraphics on input line 170.
 Package epstopdf Info: Output file is already uptodate.
 File: ./figures/sol.generated.pdf Graphic file (type pdf)
-
-<use ./figures/sol.generated.pdf>
+ <use ./figures/sol.generated.pdf>
 Package pdftex.def Info: ./figures/sol.generated.pdf used on input line 170.
 (pdftex.def)             Requested size: 418.25368pt x 313.69583pt.
 Package epstopdf Info: Source file: <../ex5/error.eps>
@@ -1938,16 +1935,17 @@ pdf ../ex5/error.eps>
 (epstopdf)             \includegraphics on input line 176.
 Package epstopdf Info: Output file is already uptodate.
 File: ./figures/error.generated.pdf Graphic file (type pdf)
- <use ./figures/error.generated.pdf>
+
+<use ./figures/error.generated.pdf>
 Package pdftex.def Info: ./figures/error.generated.pdf used on input line 176.
 (pdftex.def)             Requested size: 418.25368pt x 313.69583pt.
- [8 <./figures/error.generated.pdf>] [9] [10]
+ [9] [10]
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 185.
 
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-[11]
+) [11]
 Overfull \hbox (23.24905pt too wide) in paragraph at lines 185--185
 []\T1/lmtt/m/n/10.95 title(sprintf('||u-u_h||_E, fitted s = %.4f ,calculated s 
 = %.4f', pf(1),cs))[] 
@@ -2022,18 +2020,14 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 201.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 201.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: 523BEEB236497C21CE77335F0776F878;1536.
-
-
-LaTeX Warning: There were undefined references.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 201.
  ) 
 Here is how much of TeX's memory you used:
- 36480 strings out of 493493
- 769432 string characters out of 3143798
+ 36477 strings out of 493493
+ 769399 string characters out of 3143798
  917943 words of memory out of 3000000
- 38880 multiletter control sequences out of 15000+200000
- 98002 words of font info for 124 fonts, out of 3000000 for 9000
+ 38879 multiletter control sequences out of 15000+200000
+ 97919 words of font info for 123 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  70i,12n,76p,697b,898s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -2050,7 +2044,7 @@ lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmtt10.pfb>
-Output written on document.pdf (16 pages, 6968051 bytes).
+Output written on document.pdf (16 pages, 6967803 bytes).
 PDF statistics:
  12605 PDF objects out of 12825 (max. 8388607)
  317 compressed objects within 4 object streams
